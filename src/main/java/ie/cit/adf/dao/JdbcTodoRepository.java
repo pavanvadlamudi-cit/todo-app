@@ -8,13 +8,17 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JdbcTodoRepository implements TodoRepository {
 
 	private JdbcTemplate jdbcTemplate;
 
+	@Autowired
 	public JdbcTodoRepository(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
