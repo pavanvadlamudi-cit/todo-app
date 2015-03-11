@@ -33,6 +33,22 @@ public class JdbcTodoRepository implements TodoRepository {
 		return jdbcTemplate.query("select id, text, done from todo",
 				new TodoRowMapper());
 	}
+
+	public void delete(String id) {
+		jdbcTemplate.update("delete from todo where id=?", id);
+
+	}
+
+	public Todo findById(String id) {
+		return jdbcTemplate.queryForObject(
+				"select id, text, done from todo where id=?",
+				new TodoRowMapper(), id);
+	}
+
+	public void update(Todo todo) {
+		jdbcTemplate.update("update todo set text=?, done=? where id=?",
+				todo.getText(), todo.isDone(), todo.getId());
+	}
 }
 
 class TodoRowMapper implements RowMapper<Todo> {

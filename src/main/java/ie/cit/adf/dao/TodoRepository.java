@@ -9,4 +9,10 @@ public interface TodoRepository {
 
 	List<Todo> getAll();
 
+	void delete(String id);
+
+	Todo findById(String id);
+
+	void update(Todo todo);
+
 }
